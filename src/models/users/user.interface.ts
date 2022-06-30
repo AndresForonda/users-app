@@ -17,6 +17,9 @@ interface CompanyInterface {
   bs: string
 }
 
+/**
+ * Interface for the http reponse from the jsonplaceholder api
+ */
 export interface UserInterface {
   id: number
   name: string

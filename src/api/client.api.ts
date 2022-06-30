@@ -1,19 +1,19 @@
-import axios from "axios";
+import axios from 'axios'
 
-const axiosInstance = axios.create();
+const axiosInstance = axios.create()
 
 interface HttpParams {
-  url: string;
+  url: string
 }
 
 interface HttpClientInterface {
-  get<T>(parameters: HttpParams): Promise<T>;
+  get<T>(parameters: HttpParams): Promise<T>
 }
 
 export const HttpClient = (): HttpClientInterface => ({
   get: async (parameters: HttpParams) => {
-    const { url } = parameters;
-    const { data } = await axiosInstance.get(url);
-    return data;
+    const { url } = parameters
+    const { data } = await axiosInstance.get(url)
+    return data
   },
-});
+})

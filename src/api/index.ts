@@ -1,4 +1,4 @@
-import { UserInterface } from '../models'
+import { UserInterface } from '@/models/users'
 import usersApi from './users.api'
 
 interface ApiClientInterface {

@@ -1,6 +1,6 @@
 interface GeoInterface {
-  lat: number
-  lng: number
+  lat: string
+  lng: string
 }
 
 interface AddressInterface {

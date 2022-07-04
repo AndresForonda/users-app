@@ -3,7 +3,7 @@ import * as helper from '../helpers'
 import { describe, expect, it, vi } from 'vitest'
 import { ActionContext } from 'vuex'
 import { RootStateInterface, UsersStateInterface } from '@/models/store'
-import { usersResponse } from './mockUsers'
+import { infoForUpdateUser, usersResponse } from './mockUsers'
 
 const actionContext = (
   state: UsersStateInterface = { users: [], errorMessage: '' },
@@ -16,10 +16,11 @@ const actionContext = (
   rootGetters: {},
 })
 
+const spy = vi.spyOn(helper, 'persistData')
+
 describe('Users store actions', () => {
   it('Should request a list of users', async () => {
     const context = actionContext()
-    const spy = vi.spyOn(helper, 'persistData')
     spy.mockImplementation(() => {})
     await usersActions.getUsers(context)
     expect(context.commit).toBeCalledTimes(1)
@@ -42,6 +43,19 @@ describe('Users store actions', () => {
       1,
       'setErrorMessage',
       errorMessage,
+    )
+  })
+
+  it('Should update data of a user (name or username or email) by its id', () => {
+    const state = { users: usersResponse, errorMessage: '' }
+    const context = actionContext(state)
+    spy.mockImplementation(() => {})
+    usersActions.updateUserByid(context, infoForUpdateUser)
+    expect(context.commit).toBeCalledTimes(1)
+    expect(context.commit).toHaveBeenNthCalledWith(
+      1,
+      'updateUserById',
+      infoForUpdateUser,
     )
   })
 })

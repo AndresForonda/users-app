@@ -186,3 +186,10 @@ export const usersResponse: UserInterface[] = [
     },
   },
 ]
+
+export const infoForUpdateUser = {
+  id: 1,
+  name: 'Andres',
+  username: 'Doit',
+  email: 'andresforonda.af@gmail.com',
+}

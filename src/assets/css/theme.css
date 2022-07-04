@@ -1,0 +1,21 @@
+.row {
+  display: flex;
+  border-bottom: 1px solid black;
+  max-width: 880px;
+}
+
+.cell {
+  min-width: 200px;
+  padding: 5px 10px;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.truncate {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

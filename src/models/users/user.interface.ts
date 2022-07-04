@@ -37,3 +37,10 @@ export interface BasicUserInfoInterface {
   username: string
   email: string
 }
+
+export interface UsersTableHeadersInterface {
+  name: string
+  username: string
+  email: string
+  actions: string
+}

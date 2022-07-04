@@ -2,15 +2,17 @@ import { ActionContext } from 'vuex'
 import { RootStateInterface, UsersStateInterface } from '@/models/store'
 import ApiClient from '@/api'
 import { persistData } from './helpers'
+import { UserUpdateInterface } from '@/models/users'
 
 const getUsers = async ({
   commit,
   state,
 }: ActionContext<UsersStateInterface, RootStateInterface>) => {
   if (state.users.length) return
-  const data = await ApiClient.usersApi().get()
-  persistData('users', JSON.stringify(data))
-  commit('setUsers', data)
+  const users = await ApiClient.usersApi().get()
+  // Save users on persistent storage
+  persistData('users', JSON.stringify(users))
+  commit('setUsers', users)
 }
 
 const setError = (
@@ -20,7 +22,17 @@ const setError = (
   commit('setErrorMessage', errorMessage)
 }
 
+const updateUserByid = (
+  { commit, state }: ActionContext<UsersStateInterface, RootStateInterface>,
+  userInfo: UserUpdateInterface,
+) => {
+  commit('updateUserById', userInfo)
+  // Update users on persistent storage
+  persistData('users', JSON.stringify(state.users))
+}
+
 export default {
-  setError,
   getUsers,
+  setError,
+  updateUserByid,
 }

@@ -2,7 +2,7 @@ import { ActionContext } from 'vuex'
 import { RootStateInterface, UsersStateInterface } from '@/models/store'
 import ApiClient from '@/api'
 import { persistData } from './helpers'
-import { UserUpdateInterface } from '@/models/users'
+import { BasicUserInfoInterface } from '@/models/users'
 
 const getUsers = async ({
   commit,
@@ -24,7 +24,7 @@ const setError = (
 
 const updateUserByid = (
   { commit, state }: ActionContext<UsersStateInterface, RootStateInterface>,
-  userInfo: UserUpdateInterface,
+  userInfo: BasicUserInfoInterface,
 ) => {
   commit('updateUserById', userInfo)
   // Update users on persistent storage

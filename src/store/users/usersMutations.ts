@@ -1,5 +1,5 @@
 import { UsersStateInterface } from '@/models/store'
-import { UserInterface, UserUpdateInterface } from '@/models/users'
+import { UserInterface, BasicUserInfoInterface } from '@/models/users'
 import { MutationMethod } from 'vuex'
 
 const setUsers: MutationMethod = (
@@ -14,7 +14,7 @@ const setErrorMessage: MutationMethod = (
 
 const updateUserById: MutationMethod = (
   state: UsersStateInterface,
-  userInfo: UserUpdateInterface,
+  userInfo: BasicUserInfoInterface,
 ) => {
   const userIndex = state.users.findIndex((user) => user.id === userInfo.id)
   const user = state.users[userIndex]

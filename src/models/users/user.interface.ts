@@ -31,7 +31,7 @@ export interface UserInterface {
   company: CompanyInterface
 }
 
-export interface UserUpdateInterface {
+export interface BasicUserInfoInterface {
   id: number
   name: string
   username: string

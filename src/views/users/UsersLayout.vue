@@ -18,5 +18,4 @@ const baseTableHeaders = {
       <UserTableRow v-for="user in users" :key="user.id" :userInfo="user" />
     </template>
   </flex-table>
-  <!--  -->
 </template>

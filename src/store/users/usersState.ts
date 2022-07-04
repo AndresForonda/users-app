@@ -1,7 +1,8 @@
 import { UsersStateInterface } from '@/models/store'
+import { getPersistentData } from './helpers'
 
 const state: UsersStateInterface = {
-  users: [],
+  users: getPersistentData('users') || [],
   errorMessage: '',
 }
 

@@ -30,3 +30,10 @@ export interface UserInterface {
   website: string
   company: CompanyInterface
 }
+
+export interface UserUpdateInterface {
+  id: number
+  name: string
+  username: string
+  email: string
+}

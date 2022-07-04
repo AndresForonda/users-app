@@ -1,4 +1,4 @@
-import FlexTable from '../FlexTable.vue'
+import TableFlex from '../TableFlex.vue'
 import { render, screen } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
 import { UsersTableHeadersInterface } from '@/models/users'
@@ -9,7 +9,7 @@ const tableBody = '<p>Table body</p>'
 const mountComponentFactory = (
   tableHeaders: UsersTableHeadersInterface = baseTableHeaders,
 ) => {
-  return render(FlexTable, {
+  return render(TableFlex, {
     props: { tableHeaders },
     slots: {
       'table-body': tableBody,

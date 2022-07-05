@@ -14,9 +14,15 @@ export const useUsers = () => {
       // filter the users array using filter word, filter is applied to name, username and email
       return store.state.users.users.filter(
         (user) =>
-          user.name.includes(filterWord.value) ||
-          user.username.includes(filterWord.value) ||
-          user.email.includes(filterWord.value),
+          user.name
+            .toLocaleLowerCase()
+            .includes(filterWord.value.toLocaleLowerCase()) ||
+          user.username
+            .toLocaleLowerCase()
+            .includes(filterWord.value.toLocaleLowerCase()) ||
+          user.email
+            .toLocaleLowerCase()
+            .includes(filterWord.value.toLocaleLowerCase()),
       )
     // return users state if there is not any word fo filter
     return store.state.users.users

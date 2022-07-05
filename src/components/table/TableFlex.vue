@@ -7,6 +7,10 @@ defineProps({
     type: Object as PropType<GenericObject>,
     required: true,
   },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
 <style>
@@ -28,12 +32,17 @@ defineProps({
   .flex-table {
     width: 880px;
   }
+  .table-loading {
+    height: 80px;
+    padding-top: 20px;
+  }
 }
 </style>
 <template>
   <div class="flex-table" data-testid="flex-table" id="flex-table">
     <table-header :table-headers="tableHeaders" />
-    <div class="table-body">
+    <div class="table-loading" v-if="loading">Loading...</div>
+    <div class="table-body" v-else>
       <slot name="table-body" />
     </div>
   </div>

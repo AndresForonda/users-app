@@ -26,4 +26,12 @@ export const spyUseUsers = () =>
     showEditModal: ref(false),
     users: computed(() => []),
     userIdToEdit: ref(),
+    userInfoToUpdate: ref({
+      name: '',
+      username: '',
+      email: '',
+      id: 0,
+    }),
+    userToEdit: computed(() => baseUserInfo),
+    updateUserInfo: () => {},
   }))

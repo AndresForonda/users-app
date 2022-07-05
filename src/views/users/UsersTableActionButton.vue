@@ -8,11 +8,17 @@ defineProps({
   },
 })
 
-const { showEditModal, userIdToEdit } = useUsers()
+const { showEditModal, userIdToEdit, userInfoToUpdate, userToEdit } = useUsers()
 
 const openEditModal = (id: number) => {
   showEditModal.value = true
   userIdToEdit.value = id
+  userInfoToUpdate.value = {
+    id: userToEdit.value.id,
+    name: userToEdit.value.name,
+    username: userToEdit.value.username,
+    email: userToEdit.value.email,
+  }
 }
 </script>
 <template>

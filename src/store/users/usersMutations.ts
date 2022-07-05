@@ -12,6 +12,11 @@ const setErrorMessage: MutationMethod = (
   errorMessage: string,
 ) => (state.errorMessage = errorMessage)
 
+const setRequestPending: MutationMethod = (
+  state: UsersStateInterface,
+  status: boolean,
+) => (state.requestPending = status)
+
 const updateUserById: MutationMethod = (
   state: UsersStateInterface,
   userInfo: BasicUserInfoInterface,
@@ -23,6 +28,7 @@ const updateUserById: MutationMethod = (
 
 export default {
   setErrorMessage,
+  setRequestPending,
   setUsers,
   updateUserById,
 }

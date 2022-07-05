@@ -5,8 +5,14 @@ import { ActionContext } from 'vuex'
 import { RootStateInterface, UsersStateInterface } from '@/models/store'
 import { infoForUpdateUser, usersResponse } from './mockUsers'
 
+const baseState = {
+  users: [],
+  errorMessage: '',
+  requestPending: false,
+}
+
 const actionContext = (
-  state: UsersStateInterface = { users: [], errorMessage: '' },
+  state: UsersStateInterface = baseState,
 ): ActionContext<UsersStateInterface, RootStateInterface> => ({
   dispatch: vi.fn() as any,
   commit: vi.fn() as any,
@@ -23,13 +29,12 @@ describe('Users store actions', () => {
     const context = actionContext()
     spy.mockImplementation(() => {})
     await usersActions.getUsers(context)
-    expect(context.commit).toBeCalledTimes(1)
-    expect(context.commit).toHaveBeenNthCalledWith(1, 'setUsers', usersResponse)
+    expect(context.commit).toBeCalledTimes(4)
+    expect(context.commit).toHaveBeenNthCalledWith(3, 'setUsers', usersResponse)
   })
 
   it('Should not request the users if there are some users stored', async () => {
-    const state = { users: [usersResponse[0]], errorMessage: '' }
-    const context = actionContext(state)
+    const context = actionContext({ ...baseState, users: [usersResponse[0]] })
     await usersActions.getUsers(context)
     expect(context.commit).toBeCalledTimes(0)
   })
@@ -47,8 +52,7 @@ describe('Users store actions', () => {
   })
 
   it('Should update data of a user (name or username or email) by its id', () => {
-    const state = { users: usersResponse, errorMessage: '' }
-    const context = actionContext(state)
+    const context = actionContext({ ...baseState, users: usersResponse })
     spy.mockImplementation(() => {})
     usersActions.updateUserByid(context, infoForUpdateUser)
     expect(context.commit).toBeCalledTimes(1)

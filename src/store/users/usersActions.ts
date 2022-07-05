@@ -9,10 +9,18 @@ const getUsers = async ({
   state,
 }: ActionContext<UsersStateInterface, RootStateInterface>) => {
   if (state.users.length) return
-  const users = await ApiClient.usersApi().get()
-  // Save users on persistent storage
-  persistData('users', JSON.stringify(users))
-  commit('setUsers', users)
+  try {
+    commit('setErrorMessage', '')
+    commit('setRequestPending', true)
+    const users = await ApiClient.usersApi().get()
+    // Save users on persistent storage
+    persistData('users', JSON.stringify(users))
+    commit('setUsers', users)
+  } catch (error) {
+    commit('setErrorMessage', 'There was a problem getting the users.')
+  } finally {
+    commit('setRequestPending', false)
+  }
 }
 
 const setError = (

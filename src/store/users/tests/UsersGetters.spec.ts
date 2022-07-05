@@ -9,6 +9,7 @@ describe('Users Getters', () => {
     const obtainedUserById = getters.getUserBasicInfoById({
       users: usersResponse,
       errorMessage: '',
+      requestPending: false,
     })(1)
     expect(obtainedUserById).toEqual(user)
   })

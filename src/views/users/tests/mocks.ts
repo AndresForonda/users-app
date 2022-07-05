@@ -23,6 +23,7 @@ export const baseTableHeaders: UsersTableHeadersInterface = {
 export const spyUseUsers = () =>
   vi.spyOn(usersComposable, 'useUsers').mockImplementation(() => ({
     filterWord: ref(''),
+    requestPending: computed(() => false),
     showEditModal: ref(false),
     users: computed(() => []),
     userIdToEdit: ref(),

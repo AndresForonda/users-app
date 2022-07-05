@@ -32,3 +32,7 @@ about the tests in the application
 - Shows the users' name, username and email in a table
 - Allows to filter data using the users' name, username and email
 - Doesn't request data if there was a previous request
+
+## Modal background (mask)
+
+I got the background effect for the modal from this [example](https://vuejs.org/examples/#modal)

@@ -1,48 +1,73 @@
 <script lang="ts" setup>
-import { BasicUserInfoInterface } from '@/models/users'
+import {
+  BasicUserInfoInterface,
+  UsersTableHeadersInterface,
+} from '@/models/users'
 import { PropType } from 'vue'
-import { useUsers } from './useUsers'
+import UsersTableActionButton from './UsersTableActionButton.vue'
+import UsersTableRowCell from './UsersTableRowCell.vue'
 
-const { showEditModal, userIdToEdit } = useUsers()
 defineProps({
   userInfo: {
     type: Object as PropType<BasicUserInfoInterface>,
     required: true,
   },
-})
 
-const openEditModal = (id: number) => {
-  showEditModal.value = true
-  userIdToEdit.value = id
-}
+  tableHeaders: {
+    type: Object as PropType<UsersTableHeadersInterface>,
+    required: true,
+  },
+})
 </script>
 <template>
-  <div class="row">
-    <div
-      class="cell text-left truncate"
-      :data-testid="`${userInfo.name}-${userInfo.id}`"
-    >
-      {{ userInfo.name }}
-    </div>
-    <div
-      class="cell text-left"
-      :data-testid="`${userInfo.username}-${userInfo.id}`"
-    >
-      {{ userInfo.username }}
-    </div>
-    <div
-      class="cell text-left"
-      :data-testid="`${userInfo.email}-${userInfo.id}`"
-    >
-      {{ userInfo.email }}
-    </div>
-    <div class="cell">
-      <button
-        :data-testid="`editButton-${userInfo.id}`"
-        @click="openEditModal(userInfo.id)"
-      >
-        editar
-      </button>
+  <div class="users-row">
+    <users-table-row-cell
+      :id="userInfo.id"
+      :table-header="tableHeaders.name"
+      :cell-value="userInfo.name"
+    />
+    <users-table-row-cell
+      :id="userInfo.id"
+      :table-header="tableHeaders.username"
+      :cell-value="userInfo.username"
+    />
+    <users-table-row-cell
+      :id="userInfo.id"
+      :table-header="tableHeaders.email"
+      :cell-value="userInfo.email"
+    />
+    <div class="users-cell">
+      <users-table-action-button :id="userInfo.id" />
     </div>
   </div>
 </template>
+<style scoped>
+@import '@/assets/css/variables.css';
+.users-row {
+  display: flex;
+  border-bottom: 1px solid var(--color-gray);
+  flex-direction: column;
+  padding: 20px;
+}
+
+.users-row:hover {
+  background-color: var(--color-gray);
+}
+
+.users-cell {
+  display: flex;
+}
+
+@media screen and (min-width: 1080px) {
+  .users-row {
+    flex-direction: row;
+    padding: 10px 20px;
+  }
+
+  .users-cell {
+    display: block;
+    flex-grow: 1;
+    max-width: 210px;
+  }
+}
+</style>

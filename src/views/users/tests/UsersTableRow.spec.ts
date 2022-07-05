@@ -1,13 +1,17 @@
 import { describe, expect, it, vi } from 'vitest'
-import { fireEvent, render, screen } from '@testing-library/vue'
+import { render, screen } from '@testing-library/vue'
 import UsersTableRow from '../UsersTableRow.vue'
-import { BasicUserInfoInterface } from '@/models/users'
-import { baseUserInfo, spyUseUsers } from './mocks'
+import {
+  BasicUserInfoInterface,
+  UsersTableHeadersInterface,
+} from '@/models/users'
+import { baseTableHeaders, baseUserInfo, spyUseUsers } from './mocks'
 
 const mountComponentFactory = (
   userInfo: BasicUserInfoInterface = baseUserInfo,
+  tableHeaders: UsersTableHeadersInterface = baseTableHeaders,
 ) => {
-  return render(UsersTableRow, { props: { userInfo } })
+  return render(UsersTableRow, { props: { userInfo, tableHeaders } })
 }
 
 spyUseUsers()
@@ -24,14 +28,8 @@ describe('<users-table-row />', () => {
     const emailText = await screen.findByTestId(
       `${baseUserInfo.email}-${baseUserInfo.id}`,
     )
-    expect(nameText.innerHTML).toEqual(baseUserInfo.name)
-    expect(usernameText.innerHTML).toEqual(baseUserInfo.username)
-    expect(emailText.innerHTML).toEqual(baseUserInfo.email)
-  })
-
-  it('Emits click event when action button is clicked', async () => {
-    const { getByRole, emitted } = mountComponentFactory({ ...baseUserInfo })
-    await fireEvent.click(getByRole('button'))
-    expect(emitted()).toHaveProperty('click')
+    expect(nameText.innerHTML).toContain(baseUserInfo.name)
+    expect(usernameText.innerHTML).toContain(baseUserInfo.username)
+    expect(emailText.innerHTML).toContain(baseUserInfo.email)
   })
 })

@@ -1,10 +1,16 @@
-import { UserInterface } from '@/models/users'
+import { BasicUserInfoInterface, UserInterface } from '@/models/users'
 import { useStore } from '@/store'
 import { computed, ref } from 'vue'
 
 const filterWord = ref('') // used to filter the table registers
 const showEditModal = ref(false) // used to hide/show edit modal
 const userIdToEdit = ref<number>() // user id for the user to be edited
+const userInfoToUpdate = ref<BasicUserInfoInterface>({
+  name: '',
+  username: '',
+  email: '',
+  id: 0,
+})
 
 export const useUsers = () => {
   const store = useStore()
@@ -27,10 +33,22 @@ export const useUsers = () => {
     // return users state if there is not any word fo filter
     return store.state.users.users
   })
+
+  const updateUserInfo = () => {
+    store.dispatch('users/updateUserByid', userInfoToUpdate.value)
+  }
+
+  const userToEdit = computed<BasicUserInfoInterface>(() => {
+    if (!userIdToEdit.value) return userInfoToUpdate.value
+    return store.getters['users/getUserBasicInfoById'](userIdToEdit.value)
+  })
   return {
     filterWord,
     showEditModal,
-    users,
     userIdToEdit,
+    userInfoToUpdate,
+    users,
+    userToEdit,
+    updateUserInfo,
   }
 }

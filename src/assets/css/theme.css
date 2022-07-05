@@ -1,3 +1,5 @@
+@import './variables.css';
+
 .row {
   display: flex;
   border-bottom: 1px solid black;
@@ -39,4 +41,48 @@
 
 .text-blue {
   color: blue
+}
+
+.text-gray {
+  color: gray
+}
+
+label {
+  display: block;
+}
+
+label,
+input {
+  font-weight: 100;
+  width: 300px;
+}
+
+input {
+  border-bottom: 1px solid var(--color-gray);
+  background-color: var(--color-gray-lite);
+  padding: 10px;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(177, 177, 177);
+  opacity: 1;
+  /* Firefox */
+}
+
+.flat-button {
+  padding: 10px 5px;
+  cursor: pointer;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+.flat-button:hover {
+  background-color: var(--color-gray)
+}
+
+.flat-button:disabled {
+  background-color: var(--color-gray);
+  color: gray;
+  cursor: not-allowed;
 }

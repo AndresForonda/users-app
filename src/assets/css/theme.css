@@ -4,13 +4,22 @@
   max-width: 880px;
 }
 
-.cell {
-  min-width: 200px;
-  padding: 5px 10px;
+.flex {
+  display: flex; 
 }
 
 .text-left {
   text-align: left;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mx-10 {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .truncate {
@@ -18,4 +27,16 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.text-blue {
+  color: blue
 }

@@ -34,6 +34,10 @@ export const useUsers = () => {
     return store.state.users.users
   })
 
+  const requestPending = computed<boolean>(
+    () => store.state.users.requestPending,
+  )
+
   const updateUserInfo = () => {
     store.dispatch('users/updateUserByid', userInfoToUpdate.value)
   }
@@ -45,6 +49,7 @@ export const useUsers = () => {
   return {
     filterWord,
     showEditModal,
+    requestPending,
     userIdToEdit,
     userInfoToUpdate,
     users,

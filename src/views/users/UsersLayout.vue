@@ -3,7 +3,7 @@ import TableFlex from '@/components/table/TableFlex.vue'
 import { useUsers } from './useUsers'
 import UserTableRow from './UsersTableRow.vue'
 import UsersEditModal from './UsersEditModal.vue'
-const { filterWord, users } = useUsers()
+const { filterWord, users, requestPending } = useUsers()
 const baseTableHeaders = {
   name: 'Name',
   username: 'Username',
@@ -25,7 +25,7 @@ const baseTableHeaders = {
     Filter
     <input v-model="filterWord" />
     <users-edit-modal />
-    <table-flex :table-headers="baseTableHeaders">
+    <table-flex :table-headers="baseTableHeaders" :loading="requestPending">
       <template v-slot:table-body>
         <div class="table-body-wrapper mx-10">
           <user-table-row

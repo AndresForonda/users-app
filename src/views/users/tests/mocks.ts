@@ -1,4 +1,7 @@
-import { BasicUserInfoInterface } from '@/models/users'
+import {
+  BasicUserInfoInterface,
+  UsersTableHeadersInterface,
+} from '@/models/users'
 import * as usersComposable from '../useUsers'
 import { ref, computed } from 'vue'
 import { vi } from 'vitest'
@@ -8,6 +11,13 @@ export const baseUserInfo: BasicUserInfoInterface = {
   name: 'Andres',
   username: 'doit',
   email: 'andresforonda.af@gmail.com',
+}
+
+export const baseTableHeaders: UsersTableHeadersInterface = {
+  name: 'Name',
+  username: 'Username',
+  email: 'Email',
+  actions: 'Actions',
 }
 
 export const spyUseUsers = () =>

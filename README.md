@@ -1,16 +1,34 @@
-# Vue 3 + TypeScript + Vite
+# Users App - Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This application request a list of users from a jsonplaceholder api (`https://jsonplaceholder.typicode.com/users`),
+the response is store in Vuex using the users module and in the localStorage using 'users' as key.
 
-## Recommended IDE Setup
+The users are listed in a table built from scratch using flex-box, the table shows the user's name, username and email in each row.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+The button in the last column (Edit button) allows to edit the user's name, username and email by showing a modal when it's clicked;
+the modal shows a form with one input for each user property and at the bottom two buttons allow to cancel the edit process by
+closing the modal or to save the user information shown in the form inputs and then close the modal.
 
-## Type Support For `.vue` Imports in TS
+Test have been implemented using vitest and librarytesting/vue, test coverage doesn't cover 100 % of the code (maybe I'll add more tests
+in the future).
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+## Available scripts
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+Befor run these scripts, run `npm install` or `yarn i` in order to install the project dependencies.
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+- `yarn dev` or `npm run dev`, runs the application in dev mode, serving it in the url `http://localhost:3000`
+by default
+- `yarn test:unit` or `npm run test:unit`, runs the tests using vitest as testing framework
+- `yarn coverage` or `npm run coverage`, runs the test coverage functionality from vitest, giving detailed information
+about the tests in the application
+- `yarn build` or `npm run build`, builds the application and save the result in the dist folder.
+
+## Functionalities
+
+- Requests information of some users from a jsonplaceholder api
+- Shows a loading indicator while the request is in progress
+- Stores the response in localStorage to persist the data
+- Stores the response in the users store module
+- Shows the users' name, username and email in a table
+- Allows to filter data using the users' name, username and email
+- Doesn't request data if there was a previous request
